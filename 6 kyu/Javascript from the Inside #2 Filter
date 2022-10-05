@@ -1,0 +1,18 @@
+Array.prototype.filter = function (fun, that) {
+  let out = [];
+
+  if (that) {
+    fun = fun.bind(that);
+  }
+
+  let t = this;
+  let len = t.length;
+  for (let i = 0; i < len; i++) {
+    if (i in t) {
+      if (fun(t[i], i, t)) {
+        out.push(t[i]);
+      }
+    }
+  }
+  return out;
+};
